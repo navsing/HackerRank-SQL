@@ -1,0 +1,7 @@
+select top 1 city, len(city) from station
+where len(city) in (select min(len(city)) from station)
+group by city
+
+select top 1 city, len(city) from station
+where len(city) in (select max(len(city)) from station)
+group by city
