@@ -1,0 +1,10 @@
+select h.hacker_id,h.name,
+SUM(TOTAL_SCORE) AS TOTAL from hackers h, 
+(
+Select h.name,h.hacker_id,s.challenge_id,
+max(s.score) AS TOTAL_SCORE from hackers h, submissions s 
+where h.hacker_id = s.hacker_id and s.score > 0 
+group by h.name,h.hacker_id,s.challenge_id) 
+AS hot 
+where h.hacker_id = hot.hacker_id group by h.hacker_id,h.name 
+order by TOTAL desc,h.hacker_id asc;
