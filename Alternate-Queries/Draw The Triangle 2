@@ -1,0 +1,10 @@
+
+declare @total int
+declare @string varchar(50)
+set @total = 1
+while(@total<=20)
+begin
+set @string = replicate('* ',@total) 
+print @string
+set @total = @total + 1
+end
