@@ -1,0 +1,18 @@
+with 
+LM as (select count (distinct lead_manager_code) as LM_count, company_code from Lead_Manager group by company_code),
+
+SM as (select count(distinct senior_manager_code) as SM_count, company_code from Senior_Manager group by company_code ),
+
+MC as (Select count(distinct manager_code) as MC_count, company_code from Manager group by company_code ),
+
+EC as (Select count(distinct employee_code) as EC_count, company_code from Employee group by company_code )
+
+select 
+C.company_code, founder, max(LM_count), max(SM_count),      max(MC_count), max(EC_count)
+from Company C join LM on C.company_code = LM.company_code 
+join SM on C.company_code = SM.company_code 
+join MC on C.company_code = MC.company_code 
+join EC on C.company_code = EC.company_code 
+
+group by founder, C.company_code
+order by C.company_code
