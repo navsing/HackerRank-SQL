@@ -1,0 +1,4 @@
+SELECT Root, End_Date FROM 
+(SELECT Start_Date, End_Date, CONNECT_BY_ROOT Start_Date AS Root, LEVEL AS duration FROM Projects WHERE CONNECT_BY_ISLEAF = 1 
+CONNECT BY PRIOR End_Date = Start_Date) 
+WHERE Root NOT IN (SELECT End_Date FROM Projects) ORDER BY duration, Root;
