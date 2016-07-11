@@ -1,0 +1,4 @@
+select ROUND(MAX(median),4)  from 
+(
+select lat_n , percentile_disc(0.5) within group (order by lat_n desc) over () median from station
+) 
