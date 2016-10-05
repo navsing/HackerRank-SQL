@@ -1,2 +1,2 @@
 # HackerRank_SQL
-Solved SQL Domain
+Completely solved Hacker Rank SQL Domain
